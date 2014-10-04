@@ -11,3 +11,5 @@ Script to automaticlly log in a user to http://www.lynda.com
 * Edit config.yaml with your lynda.com credentials
 * $ ruby log_in.rb
 * Set cron job to execute script
+
+To keep your config.yaml private remember to run `$ git update-index --assume-unchanged config.yaml` after clone
