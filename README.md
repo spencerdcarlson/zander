@@ -1,18 +1,16 @@
-Automate User Logon to http://www.lynda.com
+Automate User Logon to [Lynda.com](http://www.lynda.com)
 ---
 ### Set Up ###
 * Install ruby
-    * See http://bit.ly/rbenvBrew to install with rbenv via homebrew
+    * [Install](https://github.com/sstephenson/rbenv#homebrew-on-mac-os-x) ruby with [rbenv](https://github.com/sstephenson/rbenv) via [homebrew](http://brew.sh)
 * Install bundler gem 
     * `$ gem install bundler`
-    * [Here](http://dan.carley.co/blog/2012/02/07/rbenv-and-bundler/) is a great rbenv and bundler example blog
+    * [Here](http://dan.carley.co/blog/2012/02/07/rbenv-and-bundler/) is a great rbenv and bundler setup example
 * `$ get clone https://github.com/spencerdcarlson/lyndaLogIn.giti`
 * `$ cd lyndaLogIn`
 * `$ bundle install`
 * Edit config.yaml with your lynda.com credentials
+    * `$ vim config.yaml`
+    * `$ git update-index --assume-unchanged config.yaml` - to remove config.yaml from git tracking 
 * `$ ruby log_in.rb`
 * Set cron job to execute script
-
-To keep your config.yaml private remember to run: 
-
-`$ git update-index --assume-unchanged config.yaml` after clone
