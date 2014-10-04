@@ -1,4 +1,4 @@
-Script to automaticlly log in a user to http://www.lynda.com
+Automate User Logon to http://www.lynda.com
 ---
 ### Set Up ###
 * Install ruby
@@ -14,4 +14,5 @@ Script to automaticlly log in a user to http://www.lynda.com
 * Set cron job to execute script
 
 To keep your config.yaml private remember to run: 
+
 `$ git update-index --assume-unchanged config.yaml` after clone
