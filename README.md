@@ -6,7 +6,7 @@ Automate User Logon to [Lynda.com](http://www.lynda.com)
 * Install bundler gem 
     * `$ gem install bundler`
     * [Here](http://dan.carley.co/blog/2012/02/07/rbenv-and-bundler/) is a great rbenv and bundler setup example
-* `$ git clone https://github.com/spencerdcarlson/lyndaLogIn.giti`
+* `$ git clone git@github.com:spencerdcarlson/lyndaLogIn.git`
 * `$ cd lyndaLogIn`
 * `$ bundle install`
 * Edit config.yaml with your lynda.com credentials
