@@ -11,6 +11,6 @@ Automate User Logon to [Lynda.com](http://www.lynda.com)
 * `$ bundle install`
 * Edit config.yaml with your lynda.com credentials
     * `$ vim config.yaml`
-    * `$ git update-index --assume-unchanged config.yaml` *to remove config.yaml from git tracking*
+    * `$ git update-index --assume-unchanged config.yaml` *to remove config.yaml from git*
 * `$ ruby log_in.rb`
 * Set cron job to execute script
