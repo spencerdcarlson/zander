@@ -5,6 +5,7 @@ Script to automaticlly log in a user to http://www.lynda.com
     * See http://bit.ly/rbenvBrew to install with rbenv via homebrew
 * Install bundler gem 
     * $ gem install bundler
+    * great example blog http://bit.ly/rbenvExample
 * $ get clone https://github.com/spencerdcarlson/lyndaLogIn.git 
 * $ cd lyndaLogIn
 * $ bundle install
