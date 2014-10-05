@@ -1,4 +1,4 @@
-#!/usr/bin/env Users/sc/.rbenv/shims/ruby
+#!/usr/bin/env ruby
 
 require 'selenium-webdriver'
 require 'yaml'

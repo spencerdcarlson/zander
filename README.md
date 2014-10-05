@@ -20,5 +20,4 @@ Automate User Logon to [Lynda.com](http://www.lynda.com)
 Example launchctl job to run script once a month
 * `$ mv com.sc.lynda.login.plist ~/Library/LaunchAgents`
 * Edit the .plist file to point to the log_in.rb file
-* Edit "Users/sc/.rbenv/shims/ruby" in log_in.rb to your `$ which ruby` 
 * `$ launchctl load ~/Library/LaunchAgents/com.sc.lynda.login.plist`
