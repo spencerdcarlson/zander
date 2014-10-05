@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env /Users/sc/.rbenv/shims/ruby
 
 require 'selenium-webdriver'
 require 'yaml'
@@ -34,21 +34,21 @@ begin
 	passwordInput.send_keys @passwd if @passwd
 	lnk_login.click
 	guided_tour_cancel = wait.until { driver.find_element(:id => "guided-tour-cancel") }
-	puts "Logged In"
+	puts "#{Time.new} Logged In"
 	guided_tour_cancel.click
 	loggedInUser = wait.until { driver.find_element(:partial_link_text => 'Hi,') }
 	user = loggedInUser.text; user.slice! 'Hi,'
 	if user && @first_name
 		if user.strip.upcase == @first_name.upcase
-			puts "User: #{user.capitalize}"
+			puts "#{Time.new} User: #{user.capitalize}"
 		else
-			puts "Wrong user!"
+			puts "#{Time.new} Wrong user!"
 		end
 	end
 	loggedInUser.click
 	log_out = wait.until { driver.find_element(:partial_link_text => 'Log out') }
 	log_out.click
-	puts "Logged Out"
+	puts "#{Time.new} Logged Out"
 ensure
 	driver.quit
 end

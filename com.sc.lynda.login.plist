@@ -1,10 +1,9 @@
 <!-- 
-    Save this file under ~/Library/LaunchAgents/
-    change <string>com.sc.lynda.login</string> to any unique name
-    change <string>path/to/ruby/script/lyndaLogIn/log_in.rb</string> to the path to the ruby script on your machine
-    add "#!/usr/bin/env Users/sc/.rbenv/shims/ruby" to the first line of the log_in.rb script
+    #########################################################################################################################
+    #   Save this file under ~/Library/LaunchAgents/                                                                        #
+    #   change <string>path/to/ruby/script/lyndaLogIn/log_in.rb</string> to the path to the ruby script on your machine     #
+    #########################################################################################################################
 -->
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -12,11 +11,8 @@
  	<key>Label</key>
  	<string>com.sc.lynda.login</string>
 
-
-    <key>ProgramArguments</key>
-    <array>
-        <string>path/to/ruby/script/lyndaLogIn/log_in.rb</string>
-    </array>
+    <key>Program</key>
+    <string>/Users/sc/projects/ruby/logIn/log_in.rb</string>
 
     <key>Nice</key>
     <integer>1</integer>
@@ -33,6 +29,12 @@
         <key>Day</key>
         <integer>1</integer>
     </dict>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/lyndaLogin.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/lyndaLogin.log</string>
 
 </dict>
 </plist>
