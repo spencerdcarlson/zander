@@ -17,9 +17,6 @@
     <key>Nice</key>
     <integer>1</integer>
 
-    <key>RunAtLoad</key>
-    <true/>
-
     <key>StartCalendarInterval</key>
     <dict>
         <key>Minute</key>
