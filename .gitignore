@@ -1,4 +1,6 @@
-config.yaml
+share/html_v2.yaml
+share/chromedriver
+Gemfile.lock
 
 *.gem
 *.rbc

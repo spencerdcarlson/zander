@@ -1,2 +1,5 @@
 source 'https://rubygems.org'
 gem 'selenium-webdriver', '~> 2.43.0'
+gem 'json', '~> 1.8.1'
+#gem 'prawn', '~> 1.3.0'
+gem 'pdfkit', '~> 0.6.2'

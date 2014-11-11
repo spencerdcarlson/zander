@@ -1,4 +1,4 @@
-Automate User Logon to [Lynda.com](http://www.lynda.com)
+Streamline Selenium WebDriver Testing with Zander
 ---
 ### Set Up ###
 * Install ruby
