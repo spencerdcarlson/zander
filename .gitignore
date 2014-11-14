@@ -1,6 +1,5 @@
 share/html_v2.yaml
 share/chromedriver
-Gemfile.lock
 
 *.gem
 *.rbc
@@ -36,3 +35,4 @@ build/
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
+Gemfile.lock
