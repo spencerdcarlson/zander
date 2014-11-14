@@ -1,0 +1,47 @@
+##
+# Attribues is a hash of hashes the first hash will always be the way to identify an 
+# html tag ie (id: user_id or class: members) The action hash will consist of a simple action like click
+# or could contain a complex action like input which will contain a field that mapps to a website object 
+# 
+# Gmail login example:
+#WEBSTIES:
+#  - URL: https://accounts.google.com
+#    id: Email
+#    action:
+#      - variable: user_name
+#    id: Passwd
+#    action:
+#      - variable: password
+#    id: signIn
+#    action: click
+# This yaml file would know that for https://accounts.google.com it should find the html attribute 
+# 	<input id="Email" name="Email" placeholder="Email" value="" spellcheck="false" class="" type="email">
+# and insert the WebSite#user_name value
+# 
+##    
+WEBSITES:
+  - URL: https://www.google.com/
+    ATTRIBUTES:
+      - identifier:
+          id: gb_70
+        action: click
+      - identifier:
+          id: Email
+        action:
+          variable: user_name
+      - identifier:
+          id: Passwd
+        action:
+          variable: password
+      - identifier:
+          id: signIn
+        action: click
+      - identifier:
+        action: done
+  # - URL: 
+  #   ATTRIBUTES:
+  #     - identifier: 
+  #         id:
+  #       action:
+  #     - identifier:
+  #     action: done
