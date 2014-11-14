@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+#require 'zander'
+require '/Users/sc/projects/ruby/appeals/lib/zander'
+Zander.run
+
+
+

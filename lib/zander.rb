@@ -1,4 +1,3 @@
-#!/usr/bin/env /Users/sc/.rbenv/shims/ruby
 #####################################################################################################################
 #  									ZANDER THE GREAT 																#
 #						                   ,__ 																		#
@@ -18,16 +17,22 @@
 # URLs and corrisponding log in credentials are defined in the share/sites.yaml										#
 # The actions to be taken and the element identifiers are defined in share/actions.yaml								#
 #####################################################################################################################
-require_relative 'lib/sites'
-require_relative 'lib/util'
+# lib = File.expand_path('../../lib/', __FILE__)
+# $:.unshift lib unless $:.include?(lib)
+# p $:.dup
 
-begin
-	steps = ARGV[0].split(',').map(&:to_i) unless ARGV[0] == nil
-	s = Sites.new(Util.get_path('share/sites.yaml'),steps)
-	s.add_actions(Util.get_path('share/actions.yaml'))
-	s.set_log_level Logger::DEBUG
-	s.sites.each do |site|
-	 	site.drive
+class Zander
+	def self.run
+		steps = ARGV[0].split(',').map(&:to_i) unless ARGV[0] == nil
+		s = Zander::Sites.new(Zander::Util.get_path('share/sites.yaml'),steps)
+		s.add_actions(Zander::Util.get_path('share/actions.yaml'))
+		s.set_log_level Logger::DEBUG
+		s.sites.each do |site|
+			site.drive
+		end
 	end
 end
+
+require 'zander/sites'
+require 'zander/util'
 

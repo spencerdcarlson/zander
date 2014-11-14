@@ -1,4 +1,4 @@
-class Sites
+class Zander::Sites
 	require 'json'
 	require 'selenium-webdriver'
 	require 'yaml'
