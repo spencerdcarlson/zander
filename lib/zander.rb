@@ -17,22 +17,44 @@
 # URLs and corrisponding log in credentials are defined in the share/sites.yaml										#
 # The actions to be taken and the element identifiers are defined in share/actions.yaml								#
 #####################################################################################################################
-# lib = File.expand_path('../../lib/', __FILE__)
-# $:.unshift lib unless $:.include?(lib)
+#lib = File.expand_path('../../lib/', __FILE__)
+#$:.unshift lib unless $:.include?(lib)
 # p $:.dup
 
-class Zander
-	def self.run
-		steps = ARGV[0].split(',').map(&:to_i) unless ARGV[0] == nil
-		s = Zander::Sites.new(Zander::Util.get_path('share/sites.yaml'),steps)
-		s.add_actions(Zander::Util.get_path('share/actions.yaml'))
-		s.set_log_level Logger::DEBUG
-		s.sites.each do |site|
+module Zander
+	def self.run(sites: nil, actions: nil, steps: nil)
+		
+		if steps == nil
+			steps = ARGV[0].split(',').map(&:to_i) unless ARGV[0] == nil
+		end
+		
+		if (sites != nil && actions != nil)
+			zander = Sites.new(sites,steps)
+			zander.add_actions(actions)
+		else
+			zander = Sites.new(Util.get_path('share/sites.yaml'),steps)
+			zander.add_actions(Util.get_path('share/actions.yaml'))
+		end
+		
+		zander.set_log_level Logger::DEBUG
+		zander.sites.each do |site|
 			site.drive
 		end
+
 	end
 end
 
 require 'zander/sites'
+require 'zander/action'
+require 'zander/manual'
+require 'zander/site'
 require 'zander/util'
+require 'zander/ht'
+require 'zander/patient'
+
+require 'selenium-webdriver'
+require 'yaml'
+require 'logger'
+
+
 

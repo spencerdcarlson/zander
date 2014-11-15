@@ -37,6 +37,8 @@ WEBSITES:
           id: signIn
         action: click
       - identifier:
+        action: custom
+      - identifier:
         action: done
   # - URL: 
   #   ATTRIBUTES:

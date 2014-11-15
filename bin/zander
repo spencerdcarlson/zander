@@ -1,7 +1,44 @@
 #!/usr/bin/env ruby
+#################################################################################################
+# This executable file is an example three ways to properly use 'zander'. 						#
+# 1.) Demo version																				# 
+# Simply run this executable file. 																#
+# 		$ ./zander 																				#
+#  																								#
+# The demo version will use the fiels provided in the gem's share directory.  					#
+# 		share/sites.yaml 																		#
+# 		share/actions.yaml 																		#
+#  																								#
+# These files attempt to log on to a google account.  											#
+# The user name and password are invalid, and the sign in will fail 							#
+# 																								#
+# 2.) Custom files version 																		#
+# 	You must provid both the sites.yaml and actions.yaml 										#
+#  																								#
+#  																								#
+# 3.) Specific version 																			#
+#  This version allows you to provide an array of the websites you want exectued 				#
+#  [0] will only execute the actions for the first URL 											#
+#  [0,1] will execute the actions for the first two URLs, etc 									#
+#################################################################################################
 #require 'zander'
 require '/Users/sc/projects/ruby/appeals/lib/zander'
-Zander.run
+
+DIR = File.join((File.expand_path('../', File.expand_path(File.dirname(__FILE__)))), "/share/")
+###############################################################################################
+###	 		1.) Demo  -  Uses share/sites.yaml and shre/actions.yaml						###
+Zander.run																					###
+###############################################################################################
+
+###############################################################################################
+### 		2.) Custom files - Example specifying script files								###
+#Zander.run(sites: "#{DIR}sites.yaml", actions: "#{DIR}actions.yaml") 						###
+###############################################################################################
+
+###############################################################################################
+###  		3.) Specific - Eample specifing which URL entries to process					###
+#Zander.run(sites: "#{DIR}sites.yaml", actions: "#{DIR}actions.yaml", steps: [0]) 			###
+###############################################################################################
 
 
 
