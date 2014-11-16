@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.authors     	= ["Spencer Carlson"]
   s.email       	= 'spencerdcarlson@gmail.com'
   s.files       	= `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  s.executables 	= %w(zander)
+  s.executables 	<< 'zander'
   s.homepage    	= ''
   s.require_paths 	= %w(lib)
 end
