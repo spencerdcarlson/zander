@@ -1,17 +1,10 @@
 module Zander
 	class Action
 		
-		attr_reader :site
-		attr_reader :driver
-		attr_reader :log
-		attr_reader :before_action
-		attr_reader :action_type
-		attr_reader :after_action
-
-		def initialize(site, hash)
+		def initialize(site, driver, log, hash)
 			@site = site
-			@log = site.log
-			@driver = site.driver
+			@log = log
+			@driver = driver
 			@private_variable = false
 			parse_before_action(hash)
 			parse_action_type(hash)
@@ -127,7 +120,7 @@ module Zander
 				when :id
 					element = @driver.find_elements(@finder_key => @finder_value)
 				when :xpath
-					element = self.driver.find_elements(:xpath, identifier[:xpath])
+					element = @driver.find_elements(:xpath, identifier[:xpath])
 				when :css
 				when :class
 				when :class_name
@@ -182,7 +175,7 @@ module Zander
 	  			close_other_windows
 			when 'done'
 				close_other_windows
-				@driver.quit if @site.is_last?
+				@driver.quit if @site.last?
 			else
 				@log.error("Could not preform action #{@action_type} on #{@finder_key}='#{@finder_value}' element")
 			end 
@@ -220,7 +213,13 @@ module Zander
 		end
 
 		def to_s
-			"<#{self.class.name}:0x#{'%x'%(self.object_id<<1)} @site=<Site:0x#{'%x'%(self.site.object_id<<1)} ...> @action_type=#{self.action_type} >"
+			"<#{self.class.name}:0x#{'%x'%(self.object_id<<1)} @site=<Site:0x#{'%x'%(@site.object_id<<1)} ...> @action_type=#{@action_type} >"
 		end
+
+		private :to_s, :masked_variable, :close_other_windows
+		private :do_action, :get_element_from_finders, :get_elements_from_finders
+		private :get_element, :set_data, :set_variable, :set_identifier
+		private :parse_after_action, :parse_action_type, :parse_before_action
+		private :private_variable?
 	end
 end

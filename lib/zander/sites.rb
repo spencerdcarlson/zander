@@ -6,10 +6,6 @@ module Zander
 		LOG_FILE = STDOUT # 'log.txt'
 
 		attr_reader :sites
-		attr_accessor :driver
-		attr_accessor :wait
-		attr_accessor :log
-		attr_reader	:sites_yaml_file
 
 		def initialize(yaml_file, steps = nil)
 			@sites_yaml_file = yaml_file
@@ -41,11 +37,11 @@ module Zander
 				yaml['WEBSITES'].each_with_index do |site, index|
 					if steps == nil
 						@log.debug("Create Site #{site}")
-						@sites.push(Site.new(parent: self, hash: site))
+						@sites.push(Site.new(parent: self, hash: site, driver: @driver, log: @log))
 					else
 						if steps.include?(index)
 							@log.debug("Create Site #{site}")
-							@sites.push(Site.new(parent: self, hash: site))
+							@sites.push(Site.new(parent: self, hash: site, driver: @driver, log: @log))
 						end
 					end
 					
@@ -58,7 +54,7 @@ module Zander
 		end
 
 		def get_site(url)
-			self.sites.each do |site|
+			@sites.each do |site|
 				return site if site.url == url
 			end
 			nil

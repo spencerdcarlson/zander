@@ -15,4 +15,6 @@ class Hash
 	def keys_to_sym
 		change_keys(self)
 	end
+
+	private :change_keys
 end

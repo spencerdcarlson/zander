@@ -1,46 +1,41 @@
 module Zander
 	class Site
-		attr_reader :parent
-		attr_reader :actions
-		attr_reader :log
-		attr_reader :driver
 
-		def initialize(parent:, hash:)
+		def initialize(parent:, hash:, driver:, log:)
 			@actions = Array.new
 			@parent = parent unless parent == nil
-			@log = parent.log unless parent.log == nil
-			@driver = parent.driver unless parent.driver == nil
+			@log = log unless log == nil
+			@driver = driver unless driver == nil
 			create_attr_accessor(hash)
-			parent.log.debug("Created #{self}")
+			@log.debug("Created #{self}")
 		end
 
 		def get_variables
 	    	Hash[instance_variables.map { |name| [name, instance_variable_get(name)] } ]
 	  	end
 
-	  	# For each hash in the actions array, create 
+	  	# Map each hash in actions array with CommandMapper.
+	  	# If the result is an Action object, add it to the acctions array
 	  	def add_actions(actions)
 			actions.each do |action|
 				# convert keys in action hash to symbols
 				puts "Action Hash::: #{action}"
 				action = action.keys_to_sym
 				@log.debug("Create action #{action}")
-				obj = CommandMapper.map(self,action)
-				if obj.is_a?(Action)
-					self.actions.push(obj)
-				end
+				obj = CommandMapper.map(self, @driver, @log, action)
+				@actions.push(obj) if obj.is_a?(Action)
 			end
 		end
 
 		# Is this instance the last Site object defined in share/sites.yaml
-		def is_last?
+		def last?
 			@url != nil && @parent.sites.last.respond_to?(:url) && @parent.sites.last.url == @url
 		end
 
 		def drive()
 			@driver.navigate.to self.url
 			@log.info("Opened #{@driver.current_url}")
-			self.actions.each do |action|
+			@actions.each do |action|
 				action.drive
 			end
 		end
@@ -88,6 +83,8 @@ module Zander
 		def to_s
 			"<#{self.class.name}:0x#{'%x'%(self.object_id<<1)} #{get_vars}"
 		end
+
+		private :to_s, :get_vars, :create_attr_accessor, :get_variables
 
 	end
 end
