@@ -1,4 +1,5 @@
-# Hash Tools
+h = {"action"=>nil, "action_type"=>"click_element", "identifier"=>{"id"=>"gb_70"}}
+
 class Hash
 	def change_keys(hash)
 		hash.each do |key,value|
@@ -16,3 +17,5 @@ class Hash
 		change_keys(self)
 	end
 end
+p h
+p h.keys_to_sym

@@ -27,8 +27,8 @@
 # a full example is shown at the bottom 															  #
 #  										  															  #
 #######################################################################################################
-require 'zander'
-#require '/Users/sc/projects/ruby/appeals/lib/zander'
+#require 'zander'
+require '/Users/sc/projects/ruby/appeals/lib/zander'
 #######################################################################################################
 ###	 		1.) Demo  -  Uses share/sites.yaml and shre/actions.yaml								###
 Zander.run																							###

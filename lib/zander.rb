@@ -17,8 +17,8 @@
 # URLs and corrisponding log in credentials are defined in the share/sites.yaml										#
 # The actions to be taken and the element identifiers are defined in share/actions.yaml								#
 #####################################################################################################################
-#lib = File.expand_path('../../lib/', __FILE__)
-#$:.unshift lib unless $:.include?(lib)
+lib = File.expand_path('../../lib/', __FILE__)
+$:.unshift lib unless $:.include?(lib)
 # p $:.dup
 
 module Zander
@@ -43,14 +43,13 @@ module Zander
 
 	end
 end
-
+require 'zander/cmd_mapper'
 require 'zander/sites'
 require 'zander/action'
 require 'zander/manual'
 require 'zander/site'
 require 'zander/util'
 require 'zander/ht'
-require 'zander/patient'
 
 require 'selenium-webdriver'
 require 'yaml'

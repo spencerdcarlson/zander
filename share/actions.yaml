@@ -21,25 +21,32 @@
 ##    
 WEBSITES:
   - URL: https://www.google.com/
-    ATTRIBUTES:
-      - identifier:
+    ACTIONS:
+      - action:
+        action_type: click_element
+        identifier:
           id: gb_70
-        action: click
-      - identifier:
+      - action:
+        action_type: print_element
+        identifier:
+          class: tagline
+      - action:
+        action_type: input_variable
+        identifier:
           id: Email
-        action:
-          variable: user_name
-      - identifier:
+        variable: user_name
+      - action:
+        action_type: input_variable
+        identifier:
           id: Passwd
-        action:
-          variable: password
-      - identifier:
+        variable: password
+      - action:
+        action_type: click_element
+        identifier:
           id: signIn
-        action: click
-      - identifier:
-        action: custom
-      - identifier:
-        action: done
+      - manual:
+      - action:
+        action_type: done
   # - URL: 
   #   ATTRIBUTES:
   #     - identifier: 

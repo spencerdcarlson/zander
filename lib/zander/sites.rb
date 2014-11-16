@@ -2,15 +2,17 @@ module Zander
 	class Sites
 		IMPLICIT_WAIT = 10
 		YAML_URL = 'URL'
-		YAML_ATTRIBUTES = 'ATTRIBUTES'
+		YAML_ACTIONS = 'ACTIONS'
 		LOG_FILE = STDOUT # 'log.txt'
 
 		attr_reader :sites
 		attr_accessor :driver
 		attr_accessor :wait
 		attr_accessor :log
+		attr_reader	:sites_yaml_file
 
 		def initialize(yaml_file, steps = nil)
+			@sites_yaml_file = yaml_file
 			@log = Logger.new(LOG_FILE,10,1024000)
 			@log.level = Logger::DEBUG
 			@sites = Array.new
@@ -34,7 +36,7 @@ module Zander
 			@driver = Selenium::WebDriver.for :firefox, :profile => profile
 			@driver.manage.timeouts.implicit_wait = IMPLICIT_WAIT
 			@log.debug("Selenium timeouts set to #{IMPLICIT_WAIT} seconds")
-			yaml = YAML::load(File.read(yaml_file))
+			yaml = YAML::load(File.read(@sites_yaml_file))
 			if yaml.has_key? 'WEBSITES'
 				yaml['WEBSITES'].each_with_index do |site, index|
 					if steps == nil
@@ -67,17 +69,23 @@ module Zander
 		end
 
 		def add_actions(yaml_file)
-			yaml = YAML::load(File.read(yaml_file ))
+			yaml = YAML::load(File.read(yaml_file))
 			if yaml.has_key? 'WEBSITES'
 				yaml['WEBSITES'].each do |website|
-					if website.has_key?(YAML_URL) && website.has_key?(YAML_ATTRIBUTES)
+					if website.has_key?(YAML_URL) && website.has_key?(YAML_ACTIONS)
 						site = self.get_site(website[YAML_URL])
 						if site != nil
-							@log.debug("Add #{website[YAML_ATTRIBUTES]}")
-							site.add_actions(website[YAML_ATTRIBUTES])
+							@log.debug("Add #{website[YAML_ACTIONS]}")
+							site.add_actions(website[YAML_ACTIONS])
+						else
+							@log.error("Error:: '#{website[YAML_URL]}' in #{yaml_file} was not in #{@sites_yaml_file}")	
 						end
+					else
+						@log.error("#{yaml_file} doesn't contain a #{YAML_URL} array")
 					end
 				end
+			else
+				@log.error("#{yaml_file} doesn't contain a WEBSITES array")
 			end
 		end
 	end

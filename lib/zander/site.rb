@@ -22,9 +22,13 @@ module Zander
 	  	def add_actions(actions)
 			actions.each do |action|
 				# convert keys in action hash to symbols
+				puts "Action Hash::: #{action}"
 				action = action.keys_to_sym
 				@log.debug("Create action #{action}")
-				self.actions.push(Action.new(site: self, hash: action))
+				obj = CommandMapper.map(self,action)
+				if obj.is_a?(Action)
+					self.actions.push(obj)
+				end
 			end
 		end
 
