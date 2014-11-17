@@ -28,7 +28,7 @@ Usage
 	cut -d '(' -f 2 | sed 's/)//g')/bin/zander"
 
 #### Custom Input Example
-    require 'zander
+    require 'zander'
     Zander.run(sites: "sites.yaml", actions: "actions.yaml")
 
 sites.yaml
