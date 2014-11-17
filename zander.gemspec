@@ -6,7 +6,7 @@ require 'zander/version'
 Gem::Specification.new do |s|
   s.name        	= 'zander'
   s.version     	= Zander::VERSION
-  s.date			= '2014-11-13'
+  s.date			    = '2014-11-13'
   s.licenses    	= ['MIT']
   s.summary     	= "Simple Web Automation"
   s.description 	= "Zabner will help automate web testing using Selenium::WebDriver"
