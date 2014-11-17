@@ -28,18 +28,20 @@ Usage
 	cut -d '(' -f 2 | sed 's/)//g')/bin/zander"
 
 #### Custom Input Example
-`require 'zander'
-Zander.run(sites: "sites.yaml", actions: "actions.yaml")`
+    require 'zander
+    Zander.run(sites: "sites.yaml", actions: "actions.yaml")
 
 sites.yaml
-	WEBSITES:
-	  - url: https://www.google.com/
-	    user_name: "Replace this with your username"
-	    password: "Replace this with your password"
+
+    WEBSITES:
+      - url: https://www.google.com/
+        user_name: "Replace this with your username"
+        password: "Replace this with your password"
 
 
 actions.yaml
-	WEBSITES:
+	
+    WEBSITES:
 	  - URL: https://www.google.com/
 	    ACTIONS:
 	      - action:
@@ -67,7 +69,12 @@ actions.yaml
 	      - manual:
 	      - action:
 	        action_type: done
-	        
+
+Notice: variable names and their values are defined in `sites.yaml` and then can be used in `actions.yaml`
+i.e. You could change `user_name:` to `email:` or any other value if you also update `user_name` in the `actions.yaml`
+and these files would still work.
+
 Documentation
 ---
+actions documentation [docs](http://)
 source documentation [http://bit.ly/zanderdoc](http://bit.ly/zanderdoc)
