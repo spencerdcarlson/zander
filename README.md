@@ -77,5 +77,5 @@ update `user_name` to 'email' in the `actions.yaml` it will still work.
 
 Documentation
 ---
-* actions documentation [docs](http://)
+* `actions.yaml` documentation [docs](http://)
 * source documentation [http://bit.ly/zanderdoc](http://bit.ly/zanderdoc)
