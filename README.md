@@ -70,11 +70,12 @@ actions.yaml
 	      - action:
 	        action_type: done
 
-Notice: variable names and their values are defined in `sites.yaml` and then can be used in `actions.yaml`
-i.e. You could change `user_name:` to `email:` or any other value if you also update `user_name` in the `actions.yaml`
-and these files would still work.
+Notice: variable names and their values are defined by you in `sites.yaml`. 
+variables can then be used in `actions.yaml`. i.e. You could change `user_name:` 
+to `email:` or any other value that you prefer and as long as you also 
+update `user_name` to 'email' in the `actions.yaml` it will still work.
 
 Documentation
 ---
-actions documentation [docs](http://)
-source documentation [http://bit.ly/zanderdoc](http://bit.ly/zanderdoc)
+* actions documentation [docs](http://)
+* source documentation [http://bit.ly/zanderdoc](http://bit.ly/zanderdoc)
