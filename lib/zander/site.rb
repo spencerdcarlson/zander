@@ -19,7 +19,6 @@ module Zander
 	  	def add_actions(actions)
 			actions.each do |action|
 				# convert keys in action hash to symbols
-				puts "Action Hash::: #{action}"
 				action = action.keys_to_sym
 				@log.debug("Create action #{action}")
 				obj = CommandMapper.map(self, @driver, @log, action)
@@ -67,13 +66,24 @@ module Zander
 					@actions.each do |action|
 						vars << action.to_s
 					end
+				elsif key.to_s == "@password"
+					vars << "#{key}=\"#{mask(value)}\""
 				elsif index == vh.size - 1 
-					vars << "#{key}=\"#{value}\"" 
+					vars << "#{key}=\"#{value}\""
 				else 
 					"#{key}=\"#{value}\", " 
 				end
 			end
 			vars
+		end
+
+		def mask(var)
+			clear = 3 #keep last 3 in clear text
+			masked = var[0]; 
+			(var.length-(clear+1)).times do
+				masked << '*'
+			end
+			masked << var[(var.length-clear)...var.length]
 		end
 
 		def inspect

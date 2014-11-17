@@ -3,14 +3,12 @@ module Zander
 		IMPLICIT_WAIT = 10
 		YAML_URL = 'URL'
 		YAML_ACTIONS = 'ACTIONS'
-		LOG_FILE = STDOUT # 'log.txt'
 
 		attr_reader :sites
 
-		def initialize(yaml_file, steps = nil)
+		def initialize(yaml_file, steps = nil, log)
 			@sites_yaml_file = yaml_file
-			@log = Logger.new(LOG_FILE,10,1024000)
-			@log.level = Logger::DEBUG
+			@log = log
 			@sites = Array.new
 			### FIREFOX PROFILE
 			profile = Selenium::WebDriver::Firefox::Profile.new
@@ -36,21 +34,17 @@ module Zander
 			if yaml.has_key? 'WEBSITES'
 				yaml['WEBSITES'].each_with_index do |site, index|
 					if steps == nil
-						@log.debug("Create Site #{site}")
+						@log.debug("Create site object for #{site['url']}")
 						@sites.push(Site.new(parent: self, hash: site, driver: @driver, log: @log))
 					else
 						if steps.include?(index)
-							@log.debug("Create Site #{site}")
+							@log.debug("Create site object for #{site['url']}")
 							@sites.push(Site.new(parent: self, hash: site, driver: @driver, log: @log))
 						end
 					end
 					
 				end
 			end
-		end
-
-		def set_log_level(level)
-			@log.level = level
 		end
 
 		def get_site(url)

@@ -21,26 +21,35 @@ lib = File.expand_path('../../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
 # p $:.dup
 
+require 'logger'
+
 module Zander
+	@@log_level = nil
+	LOG_FILE = STDOUT # 'log.txt'
+	LOG = ::Logger.new(LOG_FILE,10,1024000)
+
 	def self.run(sites: nil, actions: nil, steps: nil)
-		
+		LOG.level = Logger::INFO
+		LOG.level = @@log_level unless @@log_level == nil
+
 		if steps == nil
 			steps = ARGV[0].split(',').map(&:to_i) unless ARGV[0] == nil
 		end
 		
 		if (sites != nil && actions != nil)
-			zander = Sites.new(sites,steps)
+			zander = Sites.new(sites,steps, LOG)
 			zander.add_actions(actions)
 		else
-			zander = Sites.new(Util.get_path('share/sites.yaml'),steps)
+			zander = Sites.new(Util.get_path('share/sites.yaml'),steps, LOG)
 			zander.add_actions(Util.get_path('share/actions.yaml'))
 		end
-		
-		zander.set_log_level Logger::DEBUG
 		zander.sites.each do |site|
 			site.drive
 		end
+	end
 
+	def self.log_level(level)
+		@@log_level = level
 	end
 end
 require 'zander/cmd_mapper'
@@ -53,7 +62,7 @@ require 'zander/ht'
 
 require 'selenium-webdriver'
 require 'yaml'
-require 'logger'
+
 
 
 
