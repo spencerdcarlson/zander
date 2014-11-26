@@ -15,22 +15,28 @@ Setup
 
 Usage
 ---
-#### Demo 
+#### irb example 
 	$ irb
 	irb(main):001:0> require 'zander'
 	irb(main):002:0> Zander.run
- 
-`$ rbenv exec zander`
+
+#### rbenv example 
+    $ rbenv exec zander
 	
-#### Example file
-	$ gem environment | grep "INSTALLATION DIRECTORY" | less \
+#### Custom ruby example
+    require 'zander'
+    Zander.run(sites: "sites.yaml", actions: "actions.yaml")
+    
+#### Ruby file with multiple examples
+	$ gem environment | grep "INSTALLATION DIRECTORY" | cat \
 	"$(cut -d ' ' -f 6)/gems/zander-$(gem list | grep zander | \
 	cut -d '(' -f 2 | sed 's/)//g')/bin/zander"
 
-#### Custom Input Example
-    require 'zander'
-    Zander.run(sites: "sites.yaml", actions: "actions.yaml")
-
+Helpers
+---
+### Starter Files    
+**Zander** is most powerful when build and customize your own *sites.yaml* and *actions.yaml* files. Here are some starter examples.    
+ 
 sites.yaml
 
     WEBSITES:
@@ -77,5 +83,5 @@ update `user_name` to 'email' in the `actions.yaml` it will still work.
 
 Documentation
 ---
-* `actions.yaml` documentation [docs](http://)
+* `actions.yaml` documentation {file:actions.md docs}
 * source documentation [http://bit.ly/zanderdoc](http://bit.ly/zanderdoc)
